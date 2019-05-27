@@ -17,8 +17,8 @@ class PostsController extends Controller
 
     public function show($id)
     {
-        $post = Post::findOrFail($id);
-
+        $post = Post::with('comments')->find($id);
+        \Log::info($post);
         return view('/posts.show',compact('post'));
     }
 
