@@ -23,6 +23,8 @@ Route::get('/posts',['as'=>'all-posts', 'uses'=>'PostsController@index']);
 
 Route::get('/posts/{id}',['as'=>'single-post', 'uses'=>'PostsController@show']);
 
+Route::post('/posts/{postid}/comments', ['as' => 'comments-post','uses'=> 'CommentsController@store']);
+
 
 
 

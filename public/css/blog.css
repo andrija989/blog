@@ -171,3 +171,8 @@
     color: darkblue;
     
   }
+  .comment {
+    border-top: black dotted 5px;
+    border-right: black dotted 5px;
+    
+  }
