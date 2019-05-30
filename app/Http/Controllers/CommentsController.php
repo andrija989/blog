@@ -14,8 +14,6 @@ class CommentsController extends Controller
 
         return redirect()->route('single-post',['id'=>$postId]);
     }
-    protected $fillable = [
-        'author', 'description',
-    ];
+    
     
 }

@@ -25,6 +25,18 @@ Route::get('/posts/{id}',['as'=>'single-post', 'uses'=>'PostsController@show']);
 
 Route::post('/posts/{postid}/comments', ['as' => 'comments-post','uses'=> 'CommentsController@store']);
 
+Route::get('/register',['as' => 'register', 'uses' => 'RegisterController@create']);
+
+Route::post('/register','RegisterController@store');
+
+Route::get('/login','LoginController@log');
+
+Route::post('/login','LoginController@store');
+
+Route::get('/logout','LoginController@destroy');
+
+
+
 
 
 
