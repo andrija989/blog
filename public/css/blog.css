@@ -176,3 +176,6 @@
     border-right: black dotted 5px;
     
   }
+  .blog-header {
+    background-color: rgba(235, 222, 222, 0.726);
+  }

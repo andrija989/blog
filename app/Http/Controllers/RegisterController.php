@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 class RegisterController extends Controller
 {
     public function __constructor(){
-        $this->middleware('');
-        
+        $this->middleware('guest');
+
     }
 
     public function create() 
@@ -33,6 +33,8 @@ class RegisterController extends Controller
         $user->save();
 
         auth()->login($user);
+
+        session()->flash('message','Jako si divan sto si se registrovao');
 
         return redirect()->route('all-posts');
     }

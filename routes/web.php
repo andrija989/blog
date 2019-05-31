@@ -1,6 +1,6 @@
 <?php
 
-
+use \App\Http\Middleware\CheckAge;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,13 +27,22 @@ Route::post('/posts/{postid}/comments', ['as' => 'comments-post','uses'=> 'Comme
 
 Route::get('/register',['as' => 'register', 'uses' => 'RegisterController@create']);
 
-Route::post('/register','RegisterController@store');
+Route::post('/register','RegisterController@store')->middleware(CheckAge::class);
 
 Route::get('/login','LoginController@log');
 
 Route::post('/login','LoginController@store');
 
 Route::get('/logout','LoginController@destroy');
+
+Route::get('/users/{id}','UsersController@show');
+
+
+
+Route::post('/tags/store','TagsController@store');
+
+
+
 
 
 

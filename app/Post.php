@@ -9,7 +9,7 @@ class Post extends Model
     
     public static function published()
     {
-        return self::where('published',1)->get();
+        return self::where('published',true);
     }
 
     protected $fillable = [
@@ -21,7 +21,12 @@ class Post extends Model
     }
     public function user()
     {
-    	return $this->belongsTo('App\User');
+    	return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function tags() 
+    {
+        return $this->belongsToMany(Tag::class);    
     }
     
 }

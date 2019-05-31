@@ -12,14 +12,14 @@ class PostsController extends Controller
 {
     public function __consturct()
     {
-        $this->middleware('auth',['only' => ['create', 'store']]);
+        $this->middleware('auth',['except' => ['index', 'show']]);
     }
 
     public function index()
     {
-        $posts = Post::published();
-        
-        return view('posts.index',compact('posts'));
+        $posts = Post::published()->with('user')->get();
+        \Log::info($posts);
+        return view('posts.index',compact(['posts']));
         
     }
 

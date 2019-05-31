@@ -14,6 +14,7 @@ class LoginController extends Controller
     public function log()
     {
         return view('/auth.login');
+        
     }
 
     public function store()
@@ -24,6 +25,8 @@ class LoginController extends Controller
                 'message' => 'Bad credentials. Please try again'
             ]);
         }
+        
+        session()->flash('message','Jako si divan sto si se logovao DRUZE');
         
         return redirect('/posts');
     }

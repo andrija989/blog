@@ -9,13 +9,25 @@
     <p>
         {{$post->body}}
     </p>
+
+    @if(count($post->tags))
+            <ul>
+                @foreach($post->tags as $tag)
+                    <li>
+                        <a href="">{{ $tag->name }}</a>
+                    </li>
+                @endforeach
+            </ul>
+    @endif
+
+    <p><b>{{"Post creator: ".$post->user['name']}}</b></p>
     @if(count($post->comments))
         <h4>Comments:</h4>
         <ul>
             @foreach ($post->comments as $comment)
                 <li>
                     <p class="comment">
-                        Author: {{$comment->author}}
+                        Author: {{$post->author}}
                     </p>
                     <p>
                         {{$comment->description}}
