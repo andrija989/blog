@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    
     public static function published()
     {
         return self::where('published',1)->get();
@@ -17,6 +18,10 @@ class Post extends Model
 
     public function comments() {
         return $this->hasMany(Comment::class);
+    }
+    public function user()
+    {
+    	return $this->belongsTo('App\User');
     }
     
 }

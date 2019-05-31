@@ -10,13 +10,17 @@ use Illuminate\Support\Facades\Auth;
 
 class PostsController extends Controller
 {
+    public function __consturct()
+    {
+        $this->middleware('auth',['only' => ['create', 'store']]);
+    }
+
     public function index()
     {
         $posts = Post::published();
-        if(Auth::check()) {
-            return view('posts.index',compact('posts'));
-        }
-        return view('auth.login');
+        
+        return view('posts.index',compact('posts'));
+        
     }
 
     public function show($id)
@@ -28,16 +32,27 @@ class PostsController extends Controller
 
     public function create()
     {
-        return view('/posts.create');
+        if(Auth::check()) {
+            return view('/posts.create');
+        }
+        return view('auth.login');
+        
     }
 
     public function store()
     {
+        
         $this->validate(request(),[
             'title' => 'required',
             'body' => 'required|min:15'
         ]);
-        $post = Post::create(request()->all());
+        $post = new Post();
+        $post->title = request('title');
+        $post->body = request('body');
+        $post->user_id = auth()->user()->id;
+        $post->published = request('published');
+        $post->save();
+
 
         return redirect()->route('all-posts');
     }
