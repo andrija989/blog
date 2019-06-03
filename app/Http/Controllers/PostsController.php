@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,8 +33,9 @@ class PostsController extends Controller
 
     public function create()
     {
+        $tags = Tag::all();
         if(Auth::check()) {
-            return view('/posts.create');
+            return view('/posts.create',compact('tags'));
         }
         return view('auth.login');
         
@@ -44,7 +46,8 @@ class PostsController extends Controller
         
         $this->validate(request(),[
             'title' => 'required',
-            'body' => 'required|min:15'
+            'body' => 'required|min:15',
+            
         ]);
         $post = new Post();
         $post->title = request('title');
@@ -52,6 +55,8 @@ class PostsController extends Controller
         $post->user_id = auth()->user()->id;
         $post->published = request('published');
         $post->save();
+
+        $post->tags()->attach(request('tag'));       
 
 
         return redirect()->route('all-posts');

@@ -33,6 +33,17 @@
                 value="1" />
         </div>
 
+        <div class="for-group">
+            <label for="tag">Tag selection:</label>
+            
+            <select name="tag">
+                @foreach($tags as $tag)
+                    <option value="{{$tag->id}}">{{$tag->name}}</option>
+                @endforeach
+            </select>
+          
+        </div>
+
         <div class="form-group">
             <button type="submit" class="btn btn-primary"> Submit Post</button>
         </div>

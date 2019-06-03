@@ -37,9 +37,9 @@ Route::get('/logout','LoginController@destroy');
 
 Route::get('/users/{id}','UsersController@show');
 
+Route::get('/tag/{id}','TagsController@show');
 
 
-Route::post('/tags/store','TagsController@store');
 
 
 
