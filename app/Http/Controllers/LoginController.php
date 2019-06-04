@@ -26,7 +26,7 @@ class LoginController extends Controller
             ]);
         }
         
-        session()->flash('message','Jako si divan sto si se logovao DRUZE');
+        session()->flash('message','Jako si divan sto si se logovao');
         
         return redirect('/posts');
     }
