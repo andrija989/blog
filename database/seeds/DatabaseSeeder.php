@@ -10,7 +10,10 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
-        // $this->call(UsersTableSeeder::class);
+    {   // ukoliko zelimo da pozovemo sve seedere odjednom (php artisan migrate:fresh --seed)
+        $this->call(UsersTableSeeder::class);
+        $this->call(PostsTableSeeder::class);
+        $this->call(CommentsTableSeeder::class);
+        $this->call(TagsTableSeeder::class);
     }
 }
