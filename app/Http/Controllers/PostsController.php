@@ -47,6 +47,7 @@ class PostsController extends Controller
         $this->validate(request(),[
             'title' => 'required',
             'body' => 'required|min:15',
+            'tags' => 'required'
             
         ]);
         $post = new Post();
