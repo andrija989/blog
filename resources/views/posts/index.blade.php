@@ -17,6 +17,20 @@
         @endforeach
     </ul>
 
+    <nav class="blog-pagination">
+        <a class="btn btn-outline-{{ $posts->currentPage() === 1 ? 'disabled' : 'primary' }}" 
+            href="{{ $posts->previousPageUrl() }}">
+            Previous
+        </a>
+
+        <a class="btn btn-outline-{{ $posts->hasMorePages() ? 'primary' : 'disabled' }}" 
+            href="{{ $posts->nextPageUrl() }}">
+            Next
+        </a>
+    </nav>
+
+    Page {{ $posts->currentPage() }} of {{ $posts->lastPage() }}
+
     <a href="/posts/create" class="btn btn-primary">Create New Post</a>
 @endsection
 

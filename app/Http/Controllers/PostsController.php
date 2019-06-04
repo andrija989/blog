@@ -18,7 +18,7 @@ class PostsController extends Controller
 
     public function index()
     {
-        $posts = Post::published()->with('user')->get();
+        $posts = Post::published()->with('user')->paginate(10); //paginate- listanje postova po stranici
         \Log::info($posts);
         return view('posts.index',compact(['posts']));
         
